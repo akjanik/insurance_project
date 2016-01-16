@@ -1,0 +1,54 @@
+\documentclass{article}
+\title{Insurance Models for Industry Project}
+\author{Adam Janik, Piotr Kobus}
+
+\usepackage{amsmath}
+
+\usepackage{ifthen,xcolor}
+\newlength{\tabcont}
+
+\newcommand{\tab}[1]{%
+\settowidth{\tabcont}{#1}%
+\ifthenelse{\lengthtest{\tabcont < .25\linewidth}}%
+{\makebox[.25\linewidth][l]{#1}\ignorespaces}%
+{\makebox[.5\linewidth][l]{\color{red} #1}\ignorespaces}%
+}%
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\newcommand\xput[2][0.5]{%
+    \rule{#1\linewidth}{0pt}\makebox[0pt][c]{#2}\hfill}
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\maketitle
+	\newpage
+	\pagenumbering{arabic}
+	
+\section{Section1...}
+\end{document}
