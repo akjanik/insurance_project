@@ -50,5 +50,80 @@
 	\newpage
 	\pagenumbering{arabic}
 	
-\section{Section1...}
+\section{Introduction}
+In this report we will present different methods of simulation of distribution of collective risk model (CRM), as well as comparing how the differ from each other. We will also check the error of approximation, and maybe Piotr will invent something smart to put here.
+\section{Simulation of S}
+We are dealing with random variable:
+\begin{equation*}
+S = \sum_{k=1}^N X_k
+\end{equation*}
+Where both $X_k$ and $N$ are random variables. For us, choice of the distribution of $N$ will be crucial, while in most cases we consider $X_k$ as log-normal random variable, which is pretty common in actuarial science.
+\subparagraph{Algorithm}
+We will use following algorithm, to perform Monte Carlo simulation of $S$:\\
+\begin{enumerate}
+\item From a chosen distribution (Poisson, negative binomial...) generate \textit{n} - number of claims
+\item From a known distribution \textit{X}, generate \textit{n} values \textit{x} - individual losses
+\item Take sum: $s = x_1 + x_2 + .. x_n$ - this will be our value in the our vector $S$
+\item Repeat 1-3 \textit{N} times to get random numbers from unknown distribution $S$
+\end{enumerate}
+
+\subsection{Distribution of S}
+Let's examine shape of the distribution. We set $N$ as Poisson random variable with parameter $\lambda$ (that will be our changing variable) and we use $X$ having log-normal distribution with $\mu = 0$ and $\sigma = 1$. Then we simulate $S$ using procedure mentioned above, and plot histograms with function fit to it.
+
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_poiss_l10}}
+		
+		\caption{$\lambda = 10$}
+	\end{figure}
+
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_poiss_l20}}
+		
+		\caption{$\lambda = 20$}
+	\end{figure}
+	
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_poiss_l30}}
+		
+		\caption{$\lambda = 30$}
+	\end{figure}
+
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_poiss_l100}}
+		
+		\caption{$\lambda = 100$}
+	\end{figure}
+
+\clearpage
+As we can see, the larger $\lambda$ we get, the our distribution looks more and more like normal distribution. That's true, as we know from Central Limit Theorem that for $\lambda \longrightarrow \infty$ sum of log-normal random variables becomes normal.\\
+Now we will do similar experiment, but we will use N being negative binomial distribution with parameters p (probability of success) and r (number of failures):
+\begin{equation*}
+Pr(X = k) = \binom{k + r - 1}{k} p^k (1 - p)^r
+\end{equation*}
+We set $p = 0.5$ (fair play) and changing $r$, observe how shape of our distribution changes.\\
+The results are similar - for increasing $r$, the distribution gets closer and closer do normal.
+
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_nb_10}}
+		
+		\caption{$r = 10$}
+	\end{figure}
+
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_nb_20}}
+		
+		\caption{$r = 20$}
+	\end{figure}
+	
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_nb_30}}
+		
+		\caption{$r = 30$}
+	\end{figure}
+
+	\begin{figure}[h]
+		\xput[0.5]{\includegraphics[width=0.8\linewidth]{s_nb_100}}
+		
+		\caption{$r = 100$}
+	\end{figure}
 \end{document}
